@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import FuncBar from "../components/FuncBar";
 import Modal from "../components/Modal";
+import { EditNote } from "../components/Menus";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
@@ -17,11 +18,6 @@ export default function NotePage() {
   var textRef = doc(db, authVariables.currentUser.email, "notes", id, "text"); //reference to text doc
 
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
 
   async function getText() {
     var document = "";
@@ -30,7 +26,6 @@ export default function NotePage() {
     } catch (err) {
       console.error(err);
     }
-    console.log(document);
     return document;
   }
 
@@ -41,6 +36,7 @@ export default function NotePage() {
       console.log("text updated successfully");
     } catch (err) {
       console.error(err);
+      return;
     }
   }
 
@@ -50,7 +46,6 @@ export default function NotePage() {
       setText(result);
       setInitialValue(result);
     });
-    console.log(text);
   }, []);
 
   //updates text in firebase when changed here
@@ -67,15 +62,28 @@ export default function NotePage() {
 
   return (
     <>
-      <Modal toggle={modalToggle}>Temp</Modal>
+      <Modal toggle={modalToggle}>
+        <EditNote
+          note={id}
+          closeFunction={() => {
+            setModalToggle(false);
+          }}
+          renameFunction={() => {}}
+          deleteFunction={() => {}}
+        />
+      </Modal>
       <Navbar />
-      <FuncBar />
+      <FuncBar
+        editFunction={() => {
+          setModalToggle(true);
+        }}
+      />
       <Editor
         apiKey="rncicr4pa0ungw5lzix98tz61buq6rodfdnx37txoh1hi0se"
         onInit={(_evt, editor) => (editorRef.current = editor)}
         initialValue={initialValue}
         init={{
-          height: 500,
+          height: "89vh",
           menubar: false,
           plugins: [
             "advlist",
