@@ -44,7 +44,7 @@ export default function SignInPage() {
           handleError={() => {}}
           alt={alt}
         >
-          Sign In
+          Log In
         </Auth>
       </div>
     </div>
