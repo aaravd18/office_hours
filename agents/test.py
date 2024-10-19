@@ -25,4 +25,4 @@ async def message_handler(ctx: Context, sender: str, msg: Message):
     await ctx.send(sender, Message(message="hello there"))
  
 if __name__ == "__main__":
-    agent.run()
+    alice.run()

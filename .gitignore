@@ -1,3 +1,7 @@
+#APIs
+/apis
+/react-front/node_modules
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
