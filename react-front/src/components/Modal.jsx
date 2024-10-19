@@ -13,7 +13,7 @@ export default function Modal({ children, toggle }) {
           className="w-screen h-screen z-50 fixed flex top-0 left-0 items-center"
           id="modal"
         >
-          <div className="-z-20 w-full h-full opacity-50 bg-black absolute top-0 left-0"></div>
+          <div className="-z-20 w-full h-full opacity-30 bg-black absolute top-0 left-0"></div>
           <div className="w-fit h-fit m-auto self-center opacity-100">
             {children}
           </div>
