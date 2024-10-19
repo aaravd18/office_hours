@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Auth from "../components/Auth";
 import Error from "../components/Error";
 import { useAuth } from "../contexts/AuthContext";
-import { auth } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../config/firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 export default function SignUpPage() {
   const [error, setError] = useState();
+  const navigate = useNavigate();
   const authValues = useAuth();
   const alt = (
     <div className="flex flex-row">
@@ -31,12 +34,20 @@ export default function SignUpPage() {
         )}
         <Auth
           handSubmit={async (email, password) => {
+            console.log("signing up now");
             try {
               await authValues.signUp(email, password);
+              const docRef = await doc(db, auth.currentUser.email, "notes");
+              console.log("referencing path to notes doc");
+              console.log(docRef);
+              console.log("creating notes doc with field: all_names");
+              setDoc(docRef, { all_names: "" });
             } catch (err) {
               console.error(err);
               setError("Failed to sign up.");
+              return;
             }
+            navigate("/");
           }}
           handleError={() => {}}
           alt={alt}

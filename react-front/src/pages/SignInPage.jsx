@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Auth from "../components/Auth";
 import Error from "../components/Error";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function SignInPage() {
   const [error, setError] = useState();
+  const navigate = useNavigate();
   const authValues = useAuth();
   const alt = (
     <div className="flex flex-row">
@@ -35,7 +37,9 @@ export default function SignInPage() {
             } catch (err) {
               console.error(err);
               setError("Failed to sign in.");
+              return;
             }
+            navigate("/");
           }}
           handleError={() => {}}
           alt={alt}
