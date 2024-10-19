@@ -68,11 +68,11 @@ export default function NotePage() {
         onInit={(_evt, editor) => (editorRef.current = editor)}
         initialValue={text}
         init={{
-          setup: function (editor) {
-            editor.on("input", () => {
-              setText(editorRef.current.getContent());
-            });
-          },
+          // setup: function (editor) {
+          //   editor.on("input", () => {
+          //     setText(editorRef.current.getContent());
+          //   });
+          // },
           height: 500,
           menubar: false,
           plugins: [
@@ -104,15 +104,6 @@ export default function NotePage() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button
-        className="p-4 text-white bg-blue-400 rounded-lg"
-        onClick={() => {
-          console.log();
-          setText(editorRef.current.getContent());
-        }}
-      >
-        Update Firebase
-      </button>
     </>
   );
 }
