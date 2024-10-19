@@ -7,7 +7,6 @@ import SignInPage from "./pages/SignInPage";
 import "./index.css";
 import { PrivateRoute } from "./components/PrivateRoute";
 import LandingPage from "./pages/LandingPage";
-import TestPage from "./pages/TestPage";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
           <Route path="/note/:id" Component={NotePage} />
           <Route path="/signup" Component={SignUpPage} />
           <Route path="/login" Component={SignInPage} />
-          <Route path="/test" Component={TestPage} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
