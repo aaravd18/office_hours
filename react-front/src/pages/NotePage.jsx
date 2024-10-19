@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
+import FuncBar from "../components/FuncBar";
+import Modal from "../components/Modal";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
@@ -7,6 +9,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Editor } from "@tinymce/tinymce-react";
 
 export default function NotePage() {
+  const [modalToggle, setModalToggle] = useState(false);
   const [initialValue, setInitialValue] = useState("");
   const [text, setText] = useState("");
   const authVariables = useAuth();
@@ -64,13 +67,15 @@ export default function NotePage() {
 
   return (
     <>
+      <Modal toggle={modalToggle}>Temp</Modal>
       <Navbar />
+      <FuncBar />
       <Editor
         apiKey="rncicr4pa0ungw5lzix98tz61buq6rodfdnx37txoh1hi0se"
         onInit={(_evt, editor) => (editorRef.current = editor)}
         initialValue={initialValue}
         init={{
-          height: 500,
+          height: "89vh",
           menubar: false,
           plugins: [
             "advlist",
@@ -99,6 +104,7 @@ export default function NotePage() {
             "removeformat | help",
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+          resize: false,
         }}
         onEditorChange={() => {
           setText(editorRef.current.getContent());
