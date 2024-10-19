@@ -22,7 +22,7 @@ export default function Navbar() {
         </a>
       ) : (
         <button
-          className="transition ease-in-out delay-50 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-rose-500 duration-300 my-auto px-3 rounded-md bg-blue-500 text-white mx-auto mr-12 drop-shadow-lg"
+          className="transition ease-in-out delay-50 bg-blue-500 hover:-translate-y-1 hover:scale-90 hover:bg-rose-500 duration-300 my-auto px-3 rounded-md bg-blue-500 text-white mx-auto mr-12 drop-shadow-lg"
           onClick={() => {
             authValues.logOut();
           }}
