@@ -1,13 +1,33 @@
-from uagents import Agent, Context
+from uagents import Agent, Bureau, Context, Model
+import os
+
+from groq import Groq
+
+client = Groq(
+    api_key = os.environ.get("GROQ_API_KEY")
+    )
+
+class Message(Model):
+    message: str
  
-# Create an agent named Alice
-alice = Agent(name="alice", seed="srawer")
+sigmar = Agent(name="sigmar", seed="sigmar recovery phrase")
+slaanesh = Agent(name="slaanesh", seed="slaanesh recovery phrase")
  
-# Define a periodic task for Alice
-@alice.on_interval(period=2.0)
-async def say_hello(ctx: Context):
-    ctx.logger.info(f'hello, my name is {alice.name}')
+@sigmar.on_interval(period=3.0)
+async def send_message(ctx: Context):
+   await ctx.send(slaanesh.address, Message(message="hello there slaanesh"))
  
-# Run the agent
+@sigmar.on_message(model=Message)
+async def sigmar_message_handler(ctx: Context, sender: str, msg: Message):
+    ctx.logger.info(f"Received message from {sender}: {msg.message}")
+ 
+@slaanesh.on_message(model=Message)
+async def slaanesh_message_handler(ctx: Context, sender: str, msg: Message):
+    ctx.logger.info(f"Received message from {sender}: {msg.message}")
+    await ctx.send(sigmar.address, Message(message="hello there sigmar"))
+ 
+bureau = Bureau()
+bureau.add(sigmar)
+bureau.add(slaanesh)
 if __name__ == "__main__":
-    alice.run()
+    bureau.run()
