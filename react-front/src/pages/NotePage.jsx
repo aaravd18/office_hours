@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Editor } from "@tinymce/tinymce-react";
 
 export default function NotePage() {
+  const [initialValue, setInitialValue] = useState("");
   const [text, setText] = useState("");
   const authVariables = useAuth();
   const { id } = useParams();
@@ -44,6 +45,7 @@ export default function NotePage() {
   useEffect(() => {
     getText().then((result) => {
       setText(result);
+      setInitialValue(result);
     });
     console.log(text);
   }, []);
@@ -66,13 +68,8 @@ export default function NotePage() {
       <Editor
         apiKey="rncicr4pa0ungw5lzix98tz61buq6rodfdnx37txoh1hi0se"
         onInit={(_evt, editor) => (editorRef.current = editor)}
-        initialValue={text}
+        initialValue={initialValue}
         init={{
-          // setup: function (editor) {
-          //   editor.on("input", () => {
-          //     setText(editorRef.current.getContent());
-          //   });
-          // },
           height: 500,
           menubar: false,
           plugins: [
@@ -102,6 +99,9 @@ export default function NotePage() {
             "removeformat | help",
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+        }}
+        onEditorChange={() => {
+          setText(editorRef.current.getContent());
         }}
       />
     </>
