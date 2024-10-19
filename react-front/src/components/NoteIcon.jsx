@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function NoteIcon({ children, className }) {
+export default function NoteIcon({ children, className, image }) {
   const navigate = useNavigate();
 
   function redirectToNote() {
@@ -18,13 +18,11 @@ export default function NoteIcon({ children, className }) {
         redirectToNote();
       }}
     >
-      <embed
-        src={"/note/" + children}
-        className="w-full h-full pointer-events-none absolute left-0 top-0"
-      />
+      <img src = {image} className= ""/>
       <div className="w-full h-fit bg-gray-400 text-center text-white z-40">
         {children}
       </div>
     </button>
+
   );
 }

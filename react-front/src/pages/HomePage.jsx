@@ -7,6 +7,7 @@ import { CreateNote } from "../components/Menus";
 import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import chem_logo from '../components/images/chem.png';
 
 export default function HomePage() {
   const [modalToggle, setModalToggle] = useState(false);
@@ -43,7 +44,7 @@ export default function HomePage() {
         <NewNoteButton className="m-3" />
         {notes.map((note) => {
           return (
-            <NoteIcon key={note} className="m-3">
+            <NoteIcon key={note} className="m-3" image={chem_logo}>
               {note}
             </NoteIcon>
           );
