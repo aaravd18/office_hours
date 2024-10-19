@@ -70,14 +70,11 @@ export default function NotePage() {
         onInit={(_evt, editor) => (editorRef.current = editor)}
         initialValue={initialValue}
         init={{
-<<<<<<< HEAD
-=======
           // setup: function (editor) {
           //   editor.on("input", () => {
           //     setText(editorRef.current.getContent());
           //   });
           // },
->>>>>>> 17070a4 (changes 4)
           height: 500,
           menubar: false,
           plugins: [
@@ -108,12 +105,9 @@ export default function NotePage() {
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
-<<<<<<< HEAD
         onEditorChange={() => {
           setText(editorRef.current.getContent());
         }}
-=======
->>>>>>> 17070a4 (changes 4)
       />
     </>
   );

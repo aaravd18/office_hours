@@ -11,7 +11,7 @@ export default function Navbar() {
         <img src = {oh_logo} className="transition ease-in-out delay-50 hover:-translate-x--1 hover:scale-110 hover:border-sky-500 duration-300 size-30 w-60 border-2 border-blue-300 rounded-full shadow-xl"/>
       </a>
       <input
-      className="text-left mr-5 my-auto mx-auto px-15 border-4 border-blue-300 hover:border-blue-500 hover: duration-200 rounded-full drop-shadow-lg">
+      className="text-left indent-3 mr-5 my-auto mx-auto px-15 border-4 border-blue-300 hover:border-blue-500 hover: duration-200 rounded-full drop-shadow-lg">
         
       </input>
       {authValues.currentUser == null ? (
