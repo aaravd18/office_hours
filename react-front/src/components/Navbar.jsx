@@ -13,7 +13,7 @@ export default function Navbar() {
       </input>
       {authValues.currentUser == null ? (
         <a
-          className="my-auto px-2 rounded-md bg-blue-500 text-white mr-10"
+          className="transition ease-in-out delay-50 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-sky-500 duration-300 my-auto px-3 rounded-md bg-blue-500 text-white mx-auto mr-12 drop-shadow-lg"
           href="/signup"
         >
           Sign Up
