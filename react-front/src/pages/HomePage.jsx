@@ -5,16 +5,40 @@ import NoteIcon from "../components/NoteIcon";
 import Modal from "../components/Modal";
 import { CreateNote } from "../components/Menus";
 import { useAuth } from "../contexts/AuthContext";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [modalToggle, setModalToggle] = useState(false);
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState("");
   const authVariables = useAuth();
+  const navigate = useNavigate();
   var docRef = doc(db, authVariables.currentUser.email, "notes");
 
-  async function startNewNote() {}
+  async function startNewNote() {
+    var id = 1;
+    var temp = "" + notes;
+    while (temp.includes("untitled")) {
+      var i = temp.indexOf("untitled");
+      temp = temp.substring(0, i) + temp.substring(i + 8);
+      console.log(temp);
+      id++;
+    }
+    try {
+      var newRef = collection(
+        db,
+        authVariables.currentUser.email,
+        "note",
+        "untitled" + id
+      );
+      setDoc(docRef, { all_names: notes + "," + "untitled" + id });
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+    navigate("note/untitled" + id);
+  }
 
   async function getNotes() {
     var document = "failed to get notes";
@@ -29,7 +53,7 @@ export default function HomePage() {
 
   useEffect(() => {
     getNotes().then((result) => {
-      setNotes(result.split(","));
+      setNotes(result);
     });
   }, []);
 
@@ -40,8 +64,13 @@ export default function HomePage() {
       </Modal>
       <Navbar />
       <div className="w-fit h-fit flex flex-row flex-wrap portrait:flex-col m-auto">
-        <NewNoteButton className="m-3" />
-        {notes.map((note) => {
+        <NewNoteButton
+          className="m-3"
+          onClick={() => {
+            startNewNote();
+          }}
+        />
+        {notes.split(",").map((note) => {
           return (
             <NoteIcon key={note} className="m-3">
               {note}
