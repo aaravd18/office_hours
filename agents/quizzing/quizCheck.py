@@ -25,7 +25,7 @@ quizCheckAgent = Agent(name="QuizCheckAgent",
 
 fund_agent_if_low(quizCheckAgent.wallet.address())
 
-@quizCheckAgent.on_rest_get("/0.0.0.0:8002", QuizResponse)
+
 async def handle_get(ctx: Context) -> dict[str, any]:
     chat_completion = client.chat.completions.create(
     messages=[
