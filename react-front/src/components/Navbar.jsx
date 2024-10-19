@@ -14,7 +14,15 @@ export default function Navbar() {
           Sign Up
         </a>
       ) : (
-        <h2>{authValues.currentUser.email}</h2>
+        <button
+          className="my-auto px-2 rounded-md bg-blue-500 text-white"
+          onClick={() => {
+            authValues.logOut();
+          }}
+        >
+          Log Out
+        </button>
+        // <h2>{authValues.currentUser.email}</h2>
       )}
     </div>
   );
