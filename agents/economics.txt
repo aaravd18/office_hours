@@ -1,0 +1,46 @@
+
+Microeconomics Lecture Notes - Supply & Demand
+
+Demand = how much of a product people are willing to buy at different prices
+    Law of Demand: As price increases, quantity demanded decreases; as price decreases, quantity demanded increases (inverse relationship)
+    Ceteris paribus - "all else equal" (assumes no other factors change)
+    Demand curve: slopes downward
+    Factors that shift demand (different from moving along the curve):
+        - Income changes
+        - Tastes/preferences
+        - Price of related goods (substitutes/complements)
+        - Expectations of future prices
+        - Number of consumers in the market
+
+Supply = how much producers are willing to sell at different prices
+    Law of Supply: As price increases, quantity supplied increases; as price decreases, quantity supplied decreases (direct relationship)
+    Supply curve: slopes upward
+    Shifts in supply (again, different from moving along curve):
+        - Input prices (labor, raw materials, etc.)
+        - Technological advancements
+        - Expectations of future prices
+        - Number of producers in the market
+        - Government policies (taxes, subsidies, etc.)
+
+Equilibrium: where supply equals demand (Price* and Quantity*)
+    No shortages or surpluses here
+    Changes in demand or supply shift the equilibrium (e.g., if demand increases, Price* and Quantity* increase)
+    Surplus: excess supply (Quantity supplied > Quantity demanded)
+    Shortage: excess demand (Quantity demanded > Quantity supplied)
+
+Elasticity (how sensitive quantity is to price change)
+    Price elasticity of demand (PED) = % change in quantity demanded / % change in price
+        - If PED > 1, demand is elastic (responsive to price)
+        - If PED < 1, demand is inelastic (not responsive)
+    Determinants of elasticity:
+        - Availability of substitutes (more substitutes = more elastic)
+        - Necessity vs luxury
+        - Time horizon (longer time = more elastic)
+
+Consumer surplus = difference between what consumers are willing to pay and what they actually pay (area above price and below demand curve)
+Producer surplus = difference between what producers are paid and their costs (area below price and above supply curve)
+
+Random notes:
+    Professor said equilibrium can shift in the short run, but markets tend to correct themselves over time (long run)
+    Example: when gas prices spike, people drive less (elastic demand in short term), but over time might buy fuel-efficient cars, making demand more inelastic in the long run?
+    Mentioned something about price ceilings and price floors—government intervention? Should read more about that.
