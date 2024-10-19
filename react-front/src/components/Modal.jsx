@@ -10,7 +10,7 @@ export default function Modal({ children, toggle }) {
     <>
       {toggle && (
         <div
-          className="w-screen h-screen z-50 fixed top-0 left-0 items-center"
+          className="w-screen h-screen z-50 fixed flex top-0 left-0 items-center"
           id="modal"
         >
           <div className="-z-20 w-full h-full opacity-50 bg-black absolute top-0 left-0"></div>

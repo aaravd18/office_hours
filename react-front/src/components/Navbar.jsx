@@ -4,13 +4,9 @@ import { useAuth } from "../contexts/AuthContext";
 export default function Navbar() {
   const authValues = useAuth();
   return (
-    
     <div className="w-full h-max px-4 py-2 flex flex-row flex-nowrap text-2xl">
       <h2 className="text-left my-auto">Office Hours</h2>
-      <input
-      className="text-left mr-5 my-auto mx-auto px-15 border-4 border-blue-300 hover:border-blue-500 hover: duration-200 rounded-full drop-shadow-lg">
-        
-      </input>
+      <input className="text-left mr-5 my-auto mx-auto px-15 border-4 border-blue-300 hover:border-blue-500 hover: duration-200 rounded-full drop-shadow-lg"></input>
       {authValues.currentUser == null ? (
         <a
           className="my-auto px-2 rounded-md bg-blue-500 text-white mr-10"
@@ -32,5 +28,3 @@ export default function Navbar() {
     </div>
   );
 }
-
-
