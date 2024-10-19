@@ -75,7 +75,7 @@ export default function NotePage() {
         onInit={(_evt, editor) => (editorRef.current = editor)}
         initialValue={initialValue}
         init={{
-          height: "89vh",
+          height: 500,
           menubar: false,
           plugins: [
             "advlist",

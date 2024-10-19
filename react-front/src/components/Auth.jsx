@@ -32,7 +32,7 @@ export default function Auth({
         }}
       />
       <button
-        className="my-2 p-2 rounded-lg bg-blue-500 text-white"
+        className="transition ease-in-out delay-50 bg-blue-500 hover:-translate-y-1 hover:scale-100 hover:bg-sky-500 duration-300 my-auto px-3 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg"
         onClick={() => {
           handSubmit(email, password);
         }}
