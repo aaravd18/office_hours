@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import NewNoteButton from "../components/NewNoteButton";
+import NoteIcon from "../components/NoteIcon";
 import { useAuth } from "../contexts/AuthContext";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 export default function HomePage() {
+  const [notes, setNotes] = useState([]);
   const authVariables = useAuth();
+  var docRef = doc(db, authVariables.currentUser.email, "notes");
+
+  async function startNewNote() {}
+
+  async function getNotes() {
+    var document = "failed to get notes";
+    try {
+      document = (await getDoc(docRef)).data().all_names;
+    } catch (err) {
+      console.error(err);
+    }
+    console.log(document);
+    return document;
+  }
+
+  useEffect(() => {
+    getNotes().then((result) => {
+      setNotes(result.split(","));
+    });
+  }, []);
+
   return (
-    <div className="flex flex-col">
-      <h1>
-        <Navbar />
-        {authVariables.currentUser != null ? (
-          <div className="m-auto">Signed In</div>
-        ) : (
-          ""
-        )}
-      </h1>
+    <div className="w-screen min-h-screen flex flex-col">
+      <Navbar />
+      <div className="w-fit h-fit flex flex-row flex-wrap portrait:flex-col m-auto">
+        <NewNoteButton className="m-3" />
+        {notes.map((note) => {
+          return (
+            <NoteIcon key={note} className="m-3">
+              {note}
+            </NoteIcon>
+          );
+        })}
+      </div>
     </div>
   );
 }

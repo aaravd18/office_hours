@@ -5,16 +5,21 @@ import SignUpPage from "./pages/SignUpPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import SignInPage from "./pages/SignInPage";
 import "./index.css";
+import { PrivateRoute } from "./components/PrivateRoute";
+import LandingPage from "./pages/LandingPage";
+import TestPage from "./pages/TestPage";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/" Component={HomePage} />
-          <Route path="/note" Component={NotePage} />
+          <Route path="/" element={<PrivateRoute Component={HomePage} />} />
+          <Route path="/landing" Component={LandingPage} />
+          <Route path="/note/:id" Component={NotePage} />
           <Route path="/signup" Component={SignUpPage} />
           <Route path="/login" Component={SignInPage} />
+          <Route path="/test" Component={TestPage} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
