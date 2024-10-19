@@ -7,7 +7,8 @@ import { CreateNote } from "../components/Menus";
 import { useAuth } from "../contexts/AuthContext";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
-import chem_logo from '../components/images/chem.png';
+import { useNavigate } from "react-router-dom";
+import chem_logo from "../components/images/chem.png";
 
 export default function HomePage() {
   const [modalToggle, setModalToggle] = useState(false);
