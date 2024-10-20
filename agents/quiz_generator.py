@@ -90,6 +90,7 @@ async def message_handler(ctx: Context, sender: str, msg: TrueOrFalseMessage):
             model="llama3-8b-8192",
         )
         ctx.logger.info(f"Final Quiz: {output_parser(chat_completion.choices[0].message.content)}")
+        quiz_generator.responses = []
 
 @quiz_generator.on_message(model=ShortAnswerMessage)
 async def message_handler(ctx: Context, sender: str, msg: ShortAnswerMessage):
@@ -107,6 +108,7 @@ async def message_handler(ctx: Context, sender: str, msg: ShortAnswerMessage):
             model="llama3-8b-8192",
         )
         ctx.logger.info(f"Final Quiz: {output_parser(chat_completion.choices[0].message.content)}")
+        quiz_generator.responses = []
     # await ctx.send(CONTENT_CHECKER_ADDRESS, QuizMessage(message=chat_completion.choices[0].message.content))
 
 
