@@ -7,6 +7,7 @@ import LogInPage from "./pages/LogInPage";
 import "./index.css";
 import { PrivateRoute } from "./components/PrivateRoute";
 import LandingPage from "./pages/LandingPage";
+import ExamPage from "./pages/ExamPage";
 
 function App() {
   return (
@@ -14,8 +15,15 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<PrivateRoute Component={HomePage} />} />
+          <Route
+            path="/exam/:id"
+            element={<PrivateRoute Component={ExamPage} />}
+          />
+          <Route
+            path="/note/:id"
+            element={<PrivateRoute Component={NotePage} />}
+          />
           <Route path="/landing" Component={LandingPage} />
-          <Route path="/note/:id" Component={NotePage} />
           <Route path="/signup" Component={SignUpPage} />
           <Route path="/login" Component={LogInPage} />
         </Routes>
