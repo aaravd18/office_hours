@@ -1,6 +1,7 @@
-<p><span style="text-decoration: underline;">Physics 101 Date: 2022-09-12 Notes:</span></p>
-<p>Thermodynamics Temperature (T) = Kinetic Energy / Boltzmann Constant (Kb)&nbsp;</p>
-<p>Internal Energy (U) = T&Delta;S - W Heat Capacities: C = &part;Q / &part;T |vib |rot Latent Heat (L) = Qmol / n Molar Heat Capacity (Cp) = &Delta;H / n&Delta;T</p>
-<p>Properties of Metals Conductor: &sigma; = 10^5 - 10^8 (ohm^-1m^-1)</p>
-<p>Semiconductor: &sigma; = 10^-4 - 10^4 (ohm^-1m^-1)</p>
-<p>Equations: &Delta;U = &Delta;Q + &Delta;W &Delta;H = &Delta;U + &Delta;(W_work) &Delta;S = &Delta;Q / T&nbsp;</p>
+<p style="text-align: justify;"><strong>Genetics</strong> <strong>Study Notes 1</strong></p>
+<p><br>Basic Terminology: Gene: A segment of DNA that codes for a specific protein, influencing <span style="color: #ba372a;">particular</span> traits. Allele:</p>
+<p>Different versions of a gene. For example, alleles for eye color may result in blue, green, or brown eyes. Genotype: The genetic makeup of an individual, consisting of the alleles inherited from both parents.</p>
+<p>Phenotype: The physical expression or characteristics resulting from the genotype, influenced by both genes and the environment.</p>
+<p>Homozygous: Having two identical alleles for a particular gene (e.g., AA or aa). Heterozygous: Having two different alleles for a gene (e.g., Aa). 2.</p>
+<p>Mendelian Genetics: Law of Segregation: Each parent carries two alleles for each gene, but only one allele is passed to offspring. This ensures that offspring inherit one df. helloallele from each parent. Law of Independent</p>
+<p>&nbsp;Assortment: Genes for different traits are inherited independently of each other.</p>
