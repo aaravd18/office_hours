@@ -23,7 +23,7 @@ export function EditNote({
   return (
     <div className="w-72 aspect-square bg-gray-200 rounded-lg flex flex-col">
       <div className="px-5 flex flex-row">
-        <h2 className="text-xl mx-auto my-2 grow">Edit Menu</h2>
+        <h2 className="text-xl mx-auto my-2 grow">Editor</h2>
         <button
           className="transition ease-in-out delay-25 bg-gray-500 hover:-translate-y-1 hover:scale-80 hover:bg-rose-500 duration-200 my-auto px-3 rounded-md text-white shadow-lg"
           onClick={() => {
@@ -43,7 +43,7 @@ export function EditNote({
             }}
           />
           <button
-            className="ml-1 px-2 rounded-sm bg-blue-500 text-white"
+            className="transition ease-in-out delay-25 bg-blue-500 hover:scale-105 hover:bg-lime-500 duration-200 ml-1 px-2 rounded-sm text-white rounded-lg"
             onClick={() => {
               renameFunction();
               setToggle(false);
@@ -53,14 +53,14 @@ export function EditNote({
           </button>
         </div>
       ) : (
-        <div className="w-fit mx-auto my-3 flex flex-row">
-          <h1 className="text-2xl">{'"' + note + '"'}</h1>{" "}
+        <div className="w-fit mx-auto my-3 flex flex-row rounded-lg">
+          <h1 className="text-2xl rounded-lg">{note}</h1>{" "}
           <button
             onClick={() => {
               setToggle(true);
             }}
           >
-            <img className="w-8 ml-1" src={edit_icon} />
+            <img className="w-8 ml-1 transition ease-in-out delay-25 hover:-translate-y-1 hover:scale-125 duration-200" src={edit_icon} />
           </button>
         </div>
       )}
