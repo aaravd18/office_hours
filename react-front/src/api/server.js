@@ -11,7 +11,7 @@ app.use(cors());
 
 // Endpoint to serve the JSON file
 app.get("/data", (req, res) => {
-  const filePath = path.join(__dirname, "test.json");
+  const filePath = path.join(__dirname, "../../../quiz_data.json");
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return res.status(500).send({ error: "Failed to read data file." });
