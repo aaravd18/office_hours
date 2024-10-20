@@ -133,18 +133,19 @@ export default function ExamPage({ className, toggle, name, rawText }) {
       <div className="w-full pt-5 px-10 text-2xl flex flex-row">
         <h1 className="grow"></h1>
         <button
-          className="w-fit m-auto mr-5 p-2 bg-gray-400 text-white text-lg rounded-md"
+          className="transition ease-in-out delay-25 hover:scale-110 bg-blue-500 hover:bg-cyan-400 duration-300 w-fit m-auto mr-5 p-2 text-white text-lg rounded-md"
           onClick={() => {}}
         >
           <img src={reload_icon.src} />
           <h1>Regenerate</h1>
         </button>
         <button
+          className="align-middle transition ease-in-out delay-25 hover:scale-110 bg-transparent hover:bg-rose-500 duration-300 w-8 mx-auto my-auto text-black hover:text-white rounded-lg"
           onClick={() => {
             toggle();
           }}
         >
-          X
+          x
         </button>
       </div>
       <div className="mx-auto text-4xl flex flex-row">
