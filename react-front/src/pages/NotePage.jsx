@@ -50,15 +50,6 @@ export default function NotePage() {
     .catch((error) => {
         console.error('Error:', error);
     });
-    //get json
-    // await fetch("http://localhost:3000/data")
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((j) => {
-    //     console.log(j);
-    //     return j;
-    //   });
   }
 
   async function getText() {
