@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import reload_icon from "../components/images/reload.png";
 import Flashcard from "../components/Flashcard";
 import TestWindow from "../components/TestWindow";
+import refresh_icon from "../components/images/reload.png";
 import { db } from "../config/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../contexts/AuthContext";
@@ -133,11 +133,10 @@ export default function ExamPage({ className, toggle, name, rawText }) {
       <div className="w-full pt-5 px-10 text-2xl flex flex-row">
         <h1 className="grow"></h1>
         <button
-          className="transition ease-in-out delay-25 hover:scale-110 bg-blue-500 hover:bg-cyan-400 duration-300 w-fit m-auto mr-5 p-2 text-white text-lg rounded-md"
+          className="align-middle transition ease-in-out delay-25 hover:scale-110 bg-transparent rounded-lg self-center"
           onClick={() => {}}
         >
-          <img src={reload_icon.src} />
-          <h1>Regenerate</h1>
+          <img src={refresh_icon} className="w-5" />
         </button>
         <button
           className="align-middle transition ease-in-out delay-25 hover:scale-110 bg-transparent hover:bg-rose-500 duration-300 w-8 mx-auto my-auto text-black hover:text-white rounded-lg"
@@ -183,7 +182,118 @@ export default function ExamPage({ className, toggle, name, rawText }) {
         <div className="mx-auto w-fit">
           {choice != null ? (
             choice == -1 ? (
-              "summary"
+              <div className="">
+                {name.includes("Genetics Day One") ? (
+                  <div>
+                    <h2 className="text-xl font-bold mb-4">
+                      Genetics Study Notes Summary
+                    </h2>
+
+                    <ul className="list-disc list-inside">
+                      <li>
+                        <strong>Gene</strong>: A DNA segment that codes for a
+                        specific protein and influences traits.
+                      </li>
+                      <li>
+                        <strong>Allele</strong>: Different versions of a gene;
+                        for example, alleles for eye color can be blue, green,
+                        or brown.
+                      </li>
+                      <li>
+                        <strong>Genotype</strong>: The genetic makeup of an
+                        individual, formed from alleles inherited from both
+                        parents.
+                      </li>
+                      <li>
+                        <strong>Phenotype</strong>: The physical characteristics
+                        resulting from the genotype, affected by genes and the
+                        environment.
+                      </li>
+                      <li>
+                        <strong>Homozygous</strong>: Having two identical
+                        alleles for a gene (e.g., AA or aa).
+                      </li>
+                      <li>
+                        <strong>Heterozygous</strong>: Having two different
+                        alleles for a gene (e.g., Aa).
+                      </li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold mt-4">
+                      Mendelian Genetics
+                    </h3>
+                    <ul className="list-disc list-inside">
+                      <li>
+                        <strong>Law of Segregation</strong>: Each parent passes
+                        one allele for each gene to the offspring.
+                      </li>
+                      <li>
+                        <strong>Law of Independent Assortment</strong>: Genes
+                        for different traits are inherited independently.
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div>
+                    <h2 className="text-xl font-bold mb-4">
+                      Physics 101 - Thermodynamics
+                    </h2>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Date: 2022-09-12
+                    </p>
+
+                    <h3 className="text-lg font-semibold mt-4">
+                      Thermodynamics
+                    </h3>
+                    <ul className="list-disc list-inside">
+                      <li>
+                        <strong>Temperature (T)</strong>: T = Kinetic Energy /
+                        Boltzmann Constant (K<sub>b</sub>)
+                      </li>
+                      <li>
+                        <strong>Internal Energy (U)</strong>: U = TΔS - W
+                      </li>
+                      <li>
+                        <strong>Heat Capacities (C)</strong>: C = ∂Q / ∂T |
+                        <sup>vib</sup> |<sup>rot</sup>
+                      </li>
+                      <li>
+                        <strong>Latent Heat (L)</strong>: L = Q<sub>mol</sub> /
+                        n
+                      </li>
+                      <li>
+                        <strong>
+                          Molar Heat Capacity (C<sub>p</sub>)
+                        </strong>
+                        : C<sub>p</sub> = ΔH / nΔT
+                      </li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold mt-4">
+                      Properties of Metals
+                    </h3>
+                    <ul className="list-disc list-inside">
+                      <li>
+                        <strong>Conductor</strong>: σ = 10<sup>5</sup> - 10
+                        <sup>8</sup> (ohm<sup>-1</sup>m<sup>-1</sup>)
+                      </li>
+                      <li>
+                        <strong>Semiconductor</strong>: σ = 10<sup>-4</sup> - 10
+                        <sup>4</sup> (ohm<sup>-1</sup>m<sup>-1</sup>)
+                      </li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold mt-4">Equations</h3>
+                    <ul className="list-disc list-inside">
+                      <li>ΔU = ΔQ + ΔW</li>
+                      <li>
+                        ΔH = ΔU + Δ(W<sub>work</sub>)
+                      </li>
+                      <li>ΔS = ΔQ / T</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             ) : choice == 0 ? (
               <>
                 <TestWindow
