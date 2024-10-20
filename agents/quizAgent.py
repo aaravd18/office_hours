@@ -6,7 +6,7 @@ from groq import Groq
 
 client = Groq(
     api_key = os.environ.get("GROQ_API_KEY")
-    )
+)
 
 # class Message(Model):
 #     message: str
@@ -19,11 +19,12 @@ class quizResponse(Model):
     answer: str
     incorrectAns: list
 
-quizAgent = Agent(name="QuizAgent",
-                  seed="quizphrase",
-                  port=8000,
-                  endpoint="127.0.0.1:8000"
-                  )
+quizAgent = Agent(
+    name="quizAgent",
+    seed="quizphrase",
+    port=8002,
+    endpoint="127.0.0.1:8002/submit"
+)
 
 fund_agent_if_low(quizAgent.wallet.address())
 
@@ -46,4 +47,4 @@ async def contentCheckAgent_message_handler(ctx: Context, sender: str, msg: quiz
  
 
 if __name__ == "__main__":
-    QuizAgent.run()
+    quizAgent.run()

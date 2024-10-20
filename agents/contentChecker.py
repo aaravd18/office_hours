@@ -3,22 +3,23 @@ from uagents import Agent, Bureau, Context, Model
 from uagents.setup import fund_agent_if_low
 from groq import Groq
  
+CONTENT_CLEANER_ADDRESS = "agent1qfhzjrxxajfymejgvke9se5j0pp6f59g88f3gp68xp77tzgdklz6gwdwxt0"
+QUIZ_AGENT_ADDRESS = "agent1qwp6lz6hqky6p9ma29tnh497gvdv4tvefr9pf2422snjw9ejffmy5h9ap58"
+
 class SummaryMessage(Model):
     message: str
 
 class CheckerMessage(Model):
     message: str
 
-agent = Agent(
+content_checker = Agent(
     name="contentChecker",
     port=8000,
     seed="contentChecker",
     endpoint=["http://127.0.0.1:8000/submit"],
 )
 
-fund_agent_if_low(agent.wallet.address())
-
-CONTENT_CLEANER_ADDRESS = "agent1qfhzjrxxajfymejgvke9se5j0pp6f59g88f3gp68xp77tzgdklz6gwdwxt0"
+fund_agent_if_low(content_checker.wallet.address())
 
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -27,7 +28,7 @@ client = Groq(
 with open('economics.txt', 'r') as file:
     notes = file.read()
 
-def content_check_prompt(summarized_notes):
+def summary_check_prompt(summarized_notes):
     return f"""
     You are an AI assistant responsible for verifying the accuracy and completeness of a summary by comparing it with the original notes. Your job is to ensure that:
 
@@ -43,14 +44,14 @@ def content_check_prompt(summarized_notes):
 
     Here is the summary: {summarized_notes}
 
-    Please compare the two and provide concise feedback on any missing information or errors in the summary. If there are no issues (80% threshold) output "False". Else, write your feedback.
+    Please compare the two and provide concise feedback on any missing information or errors in the summary.
     """
 
-@agent.on_event("startup")
+@content_checker.on_event("startup")
 async def start(ctx: Context):
-    ctx.logger.info(f"contentChecker address is {agent.address}")
+    ctx.logger.info(f"contentChecker address is {content_checker.address}")
 
-@agent.on_message(model=SummaryMessage)
+@content_checker.on_message(model=SummaryMessage)
 async def message_handler(ctx: Context, sender: str, msg: SummaryMessage):
     ctx.logger.info(f"Content Checker: Received message from {sender}")
 
@@ -58,7 +59,7 @@ async def message_handler(ctx: Context, sender: str, msg: SummaryMessage):
         messages=[
             {
                 "role": "system",
-                "content": content_check_prompt(msg.message),
+                "content": summary_check_prompt(msg.message),
             }
         ],
         model="llama3-8b-8192",
@@ -67,4 +68,4 @@ async def message_handler(ctx: Context, sender: str, msg: SummaryMessage):
     await ctx.send(sender, CheckerMessage(message=chat_completion.choices[0].message.content))
 
 if __name__ == "__main__":
-    agent.run()
+    content_checker.run()
