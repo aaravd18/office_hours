@@ -1,24 +1,26 @@
 {
     "questions": [
-        "What is the definition of demand?",
-        "True or False: The Law of Demand states that as price increases, quantity demanded increases.",
-        "What determines the direction of the supply curve?",
-        "True or False: The supply curve always slopes downward.",
-        "What is the term used to describe the excess supply of a good in the market?",
-        "Expectations of future prices can shift both the demand and supply curves.",
-        "What is the elasticity of demand defined as?",
-        "True or False: The elasticity of demand is determined solely by the availability of substitutes.",
-        "What is the area above the price and below the demand curve known as?"
+        "What is the backbone of microeconomics, determining the prices and quantities of goods and services in a market?",
+        "What is the law of demand?",
+        "A factor that can shift the demand curve, assuming all other factors remain constant?",
+        "What is the point where the supply and demand curves intersect?",
+        "What type of demand occurs when the PED is greater than 1?",
+        "What is the difference between consumer surplus and producer surplus?",
+        "What concept is crucial in understanding the laws of demand and supply?",
+        "What can happen to the quantity demanded in response to price changes when demand is elastic?",
+        "The demand for a product is the amount producers are willing to sell at different prices.",
+        "The supply curve slopes upward, indicating a direct relationship between price and quantity supplied."
     ],
     "answers": [
-        "How much of a product people are willing to buy at different prices.",
+        "Supply and demand",
+        "The law of demand states that as the price of a product increases, the quantity demanded decreases, and as the price decreases, the quantity demanded increases, assuming all other factors remain constant (ceteris paribus).",
+        "Changes in income, tastes and preferences, prices of related goods, expectations of future prices, and the number of consumers in the market",
+        "Equilibrium",
+        "Elastic demand occurs when PED is greater than 1, indicating a high responsiveness to price changes",
+        "Consumer surplus is the difference between what consumers are willing to pay and what they actually pay, represented by the area above the price and below the demand curve, while producer surplus is the difference between what producers are paid and their costs, represented by the area below the price and above the supply curve",
+        "The concept of ceteris paribus",
+        "When demand is elastic, significant changes in quantity demanded can occur in response to price changes, as seen in the example of gasoline prices and fuel-efficient cars",
         "False",
-        "Price increases, quantity supplied increases.",
-        "False",
-        "Demand is greater than supply.",
-        "True",
-        "The percentage change in quantity demanded in response to a one percent change in price.",
-        "False",
-        "Consumer surplus"
+        "False"
     ]
 }
