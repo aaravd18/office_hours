@@ -4,6 +4,8 @@ from uagents.setup import fund_agent_if_low
 from groq import Groq
 
 CONTENT_CHECKER_ADDRESS = "agent1q0yv9g9ry0gz3dqvxyvgpqrywd43v6285e9m8yqd98m3m86lxht4xpk7lv6"
+SHORT_ANSWER_ADDRESS = "agent1qwp6lz6hqky6p9ma29tnh497gvdv4tvefr9pf2422snjw9ejffmy5h9ap58"
+TRUE_FALSE_ADDRESS = "agent1qggc7ulytwuy8kl30y3a6e4a83cxp0zy8x0462jpk479dr33wxjxsegd0dy"
 
 class SummaryMessage(Model):
     message: str
@@ -11,14 +13,14 @@ class SummaryMessage(Model):
 class CheckerMessage(Model):
     message: str
 
-agent = Agent(
+content_cleaner = Agent(
     name="contentCleaner",
     port=8001,
     seed="contentCleaner",
     endpoint=["http://127.0.0.1:8001/submit"],
 )
 
-fund_agent_if_low(agent.wallet.address())
+fund_agent_if_low(content_cleaner.wallet.address())
 
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -60,12 +62,12 @@ def feedback_system_notes(notes, summary, feedback):
     
     Here is the feedback from the content checker: {feedback}
 
-    Please create an integrated summary based on the information above, ensuring all key points are included and the summary is clear and logically consistent. Output ONLY the summary.
+    Please create an integrated summary based on the information above, ensuring all key points are included and the summary is clear and logically consistent. Provide only the response without any additional explanation or commentary.
     """
 
-@agent.on_event("startup")
+@content_cleaner.on_event("startup")
 async def start(ctx: Context):
-    ctx.logger.info(f"contentCleaner address is {agent.address}")
+    ctx.logger.info(f"contentCleaner address is {content_cleaner.address}")
     chat_completion = client.chat.completions.create(
         messages=[
             {
@@ -75,29 +77,27 @@ async def start(ctx: Context):
         ],
         model="llama3-8b-8192",
     )
-    agent.summary = chat_completion.choices[0].message.content
-    ctx.logger.info(f"Content Cleaner Initial Summary: {agent.summary}")
-    await ctx.send(CONTENT_CHECKER_ADDRESS, SummaryMessage(message=agent.summary))
+    content_cleaner.summary = chat_completion.choices[0].message.content
+    ctx.logger.info(f"Content Cleaner Initial Summary: {content_cleaner.summary}")
+    await ctx.send(CONTENT_CHECKER_ADDRESS, SummaryMessage(message=content_cleaner.summary))
 
-@agent.on_message(model=CheckerMessage)
+@content_cleaner.on_message(model=CheckerMessage)
 async def message_handler(ctx: Context, sender: str, msg: CheckerMessage):
     ctx.logger.info(f"Content Cleaner: Received message from {sender}")
-
-    if msg.message.lower() != "false":
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "system",
-                    "content": feedback_system_notes(notes, agent.summary, msg.message),
-                }
-            ],
-            model="llama3-8b-8192",
-        )
-        agent.summary = chat_completion.choices[0].message.content
-        ctx.logger.info(f"Revised Summary: {agent.summary}")
-    else:
-        ctx.logger.info(f"No issues in summary")
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "system",
+                "content": feedback_system_notes(notes, content_cleaner.summary, msg.message),
+            }
+        ],
+        model="llama3-8b-8192",
+    )
+    content_cleaner.summary = chat_completion.choices[0].message.content
+    ctx.logger.info(f"Revised Summary: {content_cleaner.summary}")
+    await ctx.send(SHORT_ANSWER_ADDRESS, SummaryMessage(message=content_cleaner.summary))
+    await ctx.send(TRUE_FALSE_ADDRESS, SummaryMessage(message=content_cleaner.summary))
 
 if __name__ == "__main__":
-    agent.run()
+    content_cleaner.run()
 
