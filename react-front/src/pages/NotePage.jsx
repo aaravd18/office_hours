@@ -37,12 +37,12 @@ export default function NotePage() {
     const file = new File([blob], "sample.txt", { type: "text/plain" });
     const formData = new FormData();
     formData.append("file", file);
-    await fetch("http://localhost:3000/upload", {
+    await fetch("http://localhost:8000/upload", {
       method: "POST",
       body: formData,
     });
     //get json
-    await fetch("http://localhost:3000/data")
+    await fetch("http://localhost:8000/data")
       .then((res) => {
         return res.json();
       })
