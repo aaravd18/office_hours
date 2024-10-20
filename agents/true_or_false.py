@@ -14,7 +14,7 @@ class TrueOrFalseMessage(Model):
     message: str
 
 true_or_false = Agent(
-    name="trueOrFalsAagent",
+    name="trueOrFalseAagent",
     seed="trueorfalse",
     port=8003,
     endpoint="http://127.0.0.1:8003/submit"

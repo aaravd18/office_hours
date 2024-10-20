@@ -25,7 +25,7 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
-with open('economics.txt', 'r') as file:
+with open('agents/economics.txt', 'r') as file:
     notes = file.read()
 
 def summary_check_prompt(summarized_notes):

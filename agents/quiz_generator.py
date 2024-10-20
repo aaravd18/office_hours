@@ -17,26 +17,16 @@ class TrueOrFalseMessage(Model):
 def output_parser(llm_output):
     json_string = re.search(r'\{.*\}', llm_output, re.DOTALL).group(0)
     quiz_data = json.loads(json_string)
-    create_txt(quiz_data)
+    create_json(quiz_data)
     return quiz_data
 
-def create_txt(quiz_data):
-    # File path to save the quiz in a .txt file
-    file_path = 'quiz.txt'
+def create_json(quiz_data):
+    # Specify the output file name
+    output_file_name = "quiz_data.json"
 
-    # Writing to the .txt file
-    with open(file_path, 'w') as file:
-        # Writing all questions with numbering
-        file.write("Questions:\n")
-        for idx, question in enumerate(quiz_data['questions'], 1):
-            file.write(f"{idx}. {question}\n")
-        
-        # Adding a separator between questions and answers
-        file.write("\nAnswers:\n")
-        
-        # Writing all answers with numbering
-        for idx, answer in enumerate(quiz_data['answers'], 1):
-            file.write(f"{idx}. {answer}\n")
+    # Write the JSON data to a file
+    with open(output_file_name, 'w') as json_file:
+        json.dump(quiz_data, json_file, indent=4)
 
 quiz_generator = Agent(
     name="quizGenerator",
