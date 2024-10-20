@@ -101,7 +101,7 @@ async def message_handler(ctx: Context, sender: str, msg: ShortAnswerMessage):
             messages=[
                 {
                     "role": "system",
-                    "content": quiz_generator(quiz_generator.responses[0], quiz_generator.responses[1]),
+                    "content": quiz_generator_prompt(quiz_generator.responses[0], quiz_generator.responses[1]),
                 }
             ],
             model="llama3-8b-8192",
