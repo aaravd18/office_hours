@@ -107,7 +107,7 @@ export default function ExamPage({ className, toggle, name, rawText }) {
         {/* <h1>Exam </h1> */}
       </div>
       <main className="w-full grow flex flex-col">
-        <div className="w-full flex flex-row">
+        {/* <div className="w-full flex flex-row">
           <button className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg">
             Quizzes
           </button>
@@ -117,8 +117,10 @@ export default function ExamPage({ className, toggle, name, rawText }) {
           <button className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg">
             Flashcards
           </button>
-          s
-        </div>
+        </div> */}
+        {pairs.questions.map((question) => {
+          return <h1>{question}</h1>;
+        })}
       </main>
     </div>
   );

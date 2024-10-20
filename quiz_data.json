@@ -1,18 +1,18 @@
 {
     "questions": [
-        "What is the definition of an alkane?",
-        "What is the general formula for an alkane?",
-        "What is one property of alkanes that makes them less reactive?",
-        "What is the density of alkanes compared to water?",
-        "Alkanes are unsaturated hydrocarbons with at least one double bond between carbon atoms.",
-        "What is an example of an alkane that undergoes halogenation?"
+        "Temperature is defined as the ratio of potential energy to the Boltzmann constant.",
+        "Internal Energy can be calculated by multiplying Temperature with Boltzmann constant.",
+        "Conductors are characterized by a moderate electrical conductivity.",
+        "Latent Heat (L) can be calculated as the amount of heat per mole of substance.",
+        "Explain why Thermodynamics is the study of the relationships between heat, temperature, and energy?",
+        "The enthalpy (H) is defined as the heat change at constant pressure."
     ],
     "answers": [
-        "Alkanes are saturated hydrocarbons with only single bonds between carbon atoms.",
-        "CnH2n+2",
-        "Alkanes are non-polar molecules.",
-        "Alkanes are generally less dense than water, meaning they will float.",
         "False",
-        "Methane reacts with chlorine to form chloromethane and hydrogen chloride."
+        "False",
+        "False",
+        "True",
+        "True",
+        "True"
     ]
 }

@@ -1,0 +1,24 @@
+{
+  "questions": [
+    "What is the definition of demand?",
+    "True or False: The Law of Demand states that as price increases, quantity demanded increases.",
+    "What determines the direction of the supply curve?",
+    "True or False: The supply curve always slopes downward.",
+    "What is the term used to describe the excess supply of a good in the market?",
+    "Expectations of future prices can shift both the demand and supply curves.",
+    "What is the elasticity of demand defined as?",
+    "True or False: The elasticity of demand is determined solely by the availability of substitutes.",
+    "What is the area above the price and below the demand curve known as?"
+  ],
+  "answers": [
+    "How much of a product people are willing to buy at different prices.",
+    "False",
+    "Price increases, quantity supplied increases.",
+    "False",
+    "Demand is greater than supply.",
+    "True",
+    "The percentage change in quantity demanded in response to a one percent change in price.",
+    "False",
+    "Consumer surplus"
+  ]
+}
