@@ -13,18 +13,18 @@ export default function NoteIcon({ children, className, image, date }) {
   return (
     <button
       className={
-        "aspect-square w-56 overflow-hidden bg-gray-200 rounded-xl flex shadow shadow-lg relative " +
+        "aspect-square w-56 overflow-hidden bg-gray-200 rounded-xl flex flex-col shadow shadow-lg relative " +
         className
       }
       onClick={() => {
         redirectToNote();
       }}
     >
-      <img src={image} className="" />
+      <h3 className="absolute bottom-0 self-center">{d + ""}</h3>
+      <img src={image} className="m-auto self-center" />
       <div className="w-full h-fit bg-gray-400 text-center text-white z-40">
         {children}
       </div>
-      <h3 className="absolute bottom-0 self-center">{d + ""}</h3>
     </button>
   );
 }
