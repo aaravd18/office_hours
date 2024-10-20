@@ -1,26 +1,28 @@
 {
     "questions": [
-        "What is the backbone of microeconomics, determining the prices and quantities of goods and services in a market?",
-        "What is the law of demand?",
-        "A factor that can shift the demand curve, assuming all other factors remain constant?",
-        "What is the point where the supply and demand curves intersect?",
-        "What type of demand occurs when the PED is greater than 1?",
-        "What is the difference between consumer surplus and producer surplus?",
-        "What concept is crucial in understanding the laws of demand and supply?",
-        "What can happen to the quantity demanded in response to price changes when demand is elastic?",
-        "The demand for a product is the amount producers are willing to sell at different prices.",
-        "The supply curve slopes upward, indicating a direct relationship between price and quantity supplied."
+        "According to the Law of Demand, what happens to quantity demanded when price increases?",
+        "The demand curve slopes downward.",
+        "What is the definition of Surplus?",
+        "What is the formula for Price Elasticity of Demand?",
+        "What determines the availability of substitutes?",
+        "What is the result of a change in demand if supply remains constant?",
+        "The law of demand states that as price increases, quantity demanded decreases.",
+        "A change in what would cause a shift in the Demand Curve?",
+        "What does Ceteris Paribus mean in economics?",
+        "What is the difference between Consumer Surplus and Producer Surplus?",
+        "Where is the equilibrium price and quantity found?"
     ],
     "answers": [
-        "Supply and demand",
-        "The law of demand states that as the price of a product increases, the quantity demanded decreases, and as the price decreases, the quantity demanded increases, assuming all other factors remain constant (ceteris paribus).",
-        "Changes in income, tastes and preferences, prices of related goods, expectations of future prices, and the number of consumers in the market",
-        "Equilibrium",
-        "Elastic demand occurs when PED is greater than 1, indicating a high responsiveness to price changes",
-        "Consumer surplus is the difference between what consumers are willing to pay and what they actually pay, represented by the area above the price and below the demand curve, while producer surplus is the difference between what producers are paid and their costs, represented by the area below the price and above the supply curve",
-        "The concept of ceteris paribus",
-        "When demand is elastic, significant changes in quantity demanded can occur in response to price changes, as seen in the example of gasoline prices and fuel-efficient cars",
+        "As price increases, quantity demanded decreases; and as price decreases, quantity demanded increases.",
+        "downward",
+        "It is the excess supply of a product.",
+        "%",
+        "Availability of substitutes and time horizon",
+        "The quantity demanded increases",
         "False",
-        "False"
+        "A change in taste or preference, income, or expectations of future prices.",
+        "All else equal.",
+        "The difference between the maximum amount consumers are willing to pay and the amount they actually pay, and the difference between the cost of production and the market price, respectively.",
+        "Where the supply equals demand."
     ]
 }
