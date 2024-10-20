@@ -1,0 +1,24 @@
+.mainContainer {
+    position: relative;
+}
+.showingFront {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+.showingBack {
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    transform: rotateY(180deg);
+}
+.front{
+    position: absolute;
+    backface-visibility: hidden;
+    z-index: 20;
+}
+.back{
+    position: absolute;
+    backface-visibility: hidden;
+    z-index: 10;
+    transform: rotateY(180deg);
+}
