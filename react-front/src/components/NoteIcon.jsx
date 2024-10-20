@@ -13,7 +13,7 @@ export default function NoteIcon({ children, className, image, date }) {
   return (
     <button
       className={
-        "aspect-square w-56 overflow-hidden bg-gray-200 rounded-xl flex shadow shadow-lg relative " +
+        "transition ease-in-out delay-25 hover:-translate-y-1 hover:scale-90 duration-300 aspect-square w-56 overflow-hidden bg-gray-200 rounded-xl flex shadow shadow-lg relative " +
         className
       }
       onClick={() => {
