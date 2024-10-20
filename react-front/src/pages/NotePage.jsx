@@ -31,25 +31,55 @@ export default function NotePage() {
 
   async function getExamJSON() {
     var response;
+    createTxt();
     //post txt
-    console.log('post request ran')
-    const url = "/rest/post";
-    const data = { filename: "agents/economics.txt" };
+    // console.log("post request ran");
+    // const url = "/rest/post";
+    // const data = { filename: "agents/economics.txt" };
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("Success:", data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+    //return json
+  }
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+  function createTxt() {
+    //create txt with note data
+    const textContent = text;
+    const blob = new Blob([textContent], { type: "text/plain" });
+    const file = new File([blob], "raw_notes.txt", { type: "text/plain" });
+
+    // Step 2: Create a FormData object to send the file
+    const formData = new FormData();
+    formData.append("file", file); // 'file' is the key that the server will use to access the file
+
+    // Step 3: Send the file to the server
+    fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 
   async function getText() {
