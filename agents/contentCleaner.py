@@ -9,15 +9,22 @@ TRUE_FALSE_ADDRESS = "agent1qggc7ulytwuy8kl30y3a6e4a83cxp0zy8x0462jpk479dr33wxjx
 
 class SummaryMessage(Model):
     message: str
+    filename: str
 
 class CheckerMessage(Model):
     message: str
+
+class Request(Model):
+    filename: str
+
+class EmptyMessage(Model):
+    pass
 
 content_cleaner = Agent(
     name="contentCleaner",
     port=8001,
     seed="contentCleaner",
-    endpoint=["http://127.0.0.1:8001/submit"],
+    endpoint=["http://127.0.0.1:8001"],
 )
 
 fund_agent_if_low(content_cleaner.wallet.address())
@@ -26,22 +33,24 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
-with open('economics.txt', 'r') as file:
-    notes = file.read()
+def read_notes(filename):
+    with open(filename, 'r') as file:
+        return file.read()
 
-initial_prompt = f"""
-You are given a set of notes written by a student on a specific topic. Your task is to create a detailed and streamlined outline that logically follows the flow of the notes while retaining all key points and important information. The outline should highlight the main ideas and subpoints, ensuring clarity and organization. Do not add any new information or interpretations—just reorganize the content in a coherent and easy-to-understand format.
+def initial_prompt(notes):
+    return f"""
+    You are given a set of notes written by a student on a specific topic. Your task is to create a detailed and streamlined outline that logically follows the flow of the notes while retaining all key points and important information. The outline should highlight the main ideas and subpoints, ensuring clarity and organization. Do not add any new information or interpretations—just reorganize the content in a coherent and easy-to-understand format.
 
-When creating the outline, follow these guidelines:
-- Identify the major themes or sections in the notes.
-- Break down each major theme into subpoints, maintaining the logical progression from general to specific details.
-- Ensure that no key information is omitted, even if it appears less prominent in the original notes.
-- Use clear and concise language for each point in the outline, avoiding long sentences or complex phrasing.
+    When creating the outline, follow these guidelines:
+    - Identify the major themes or sections in the notes.
+    - Break down each major theme into subpoints, maintaining the logical progression from general to specific details.
+    - Ensure that no key information is omitted, even if it appears less prominent in the original notes.
+    - Use clear and concise language for each point in the outline, avoiding long sentences or complex phrasing.
 
-Here is the student's original input: {notes}
+    Here is the student's original input: {notes}
 
-Now, please generate the corresponding outline based on the provided notes.
-"""
+    Now, please generate the corresponding outline based on the provided notes.
+    """
 
 def feedback_system_notes(notes, summary, feedback):
     return f"""
@@ -67,19 +76,26 @@ def feedback_system_notes(notes, summary, feedback):
 
 @content_cleaner.on_event("startup")
 async def start(ctx: Context):
-    ctx.logger.info(f"contentCleaner address is {content_cleaner.address}")
+    ctx.logger.info(f"content_cleaner address is {content_cleaner.address}")
+    
+
+@content_cleaner.on_rest_post("/rest/post", Request, EmptyMessage)
+async def handle_post(ctx: Context, req: Request) -> EmptyMessage:
+    ctx.logger.info(f"Received POST request with filename {req.filename}")
+    content_cleaner.notes = read_notes(req.filename)
     chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
-                "content": initial_prompt,
+                "content": initial_prompt(content_cleaner.notes),
             },
         ],
         model="llama3-8b-8192",
     )
     content_cleaner.summary = chat_completion.choices[0].message.content
     ctx.logger.info(f"Content Cleaner Initial Summary: {content_cleaner.summary}")
-    await ctx.send(CONTENT_CHECKER_ADDRESS, SummaryMessage(message=content_cleaner.summary))
+    await ctx.send(CONTENT_CHECKER_ADDRESS, SummaryMessage(message=content_cleaner.summary, filename=req.filename))
+    return EmptyMessage()
 
 @content_cleaner.on_message(model=CheckerMessage)
 async def message_handler(ctx: Context, sender: str, msg: CheckerMessage):
@@ -88,15 +104,15 @@ async def message_handler(ctx: Context, sender: str, msg: CheckerMessage):
         messages=[
             {
                 "role": "system",
-                "content": feedback_system_notes(notes, content_cleaner.summary, msg.message),
+                "content": feedback_system_notes(content_cleaner.notes, content_cleaner.summary, msg.message),
             }
         ],
         model="llama3-8b-8192",
     )
     content_cleaner.summary = chat_completion.choices[0].message.content
     ctx.logger.info(f"Revised Summary: {content_cleaner.summary}")
-    await ctx.send(SHORT_ANSWER_ADDRESS, SummaryMessage(message=content_cleaner.summary))
-    await ctx.send(TRUE_FALSE_ADDRESS, SummaryMessage(message=content_cleaner.summary))
+    await ctx.send(SHORT_ANSWER_ADDRESS, SummaryMessage(message=content_cleaner.summary, filename=""))
+    await ctx.send(TRUE_FALSE_ADDRESS, SummaryMessage(message=content_cleaner.summary, filename=""))
 
 if __name__ == "__main__":
     content_cleaner.run()

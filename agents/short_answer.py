@@ -9,6 +9,7 @@ GENERATOR_ADDRESS = "agent1qvnvmnxd8ed5gkgpr690jcq729e57n0tdm523qp3fa7nl8pt8f9kq
 
 class SummaryMessage(Model):
     message: str
+    filename: str
 
 class ShortAnswerMessage(Model):
     message: str

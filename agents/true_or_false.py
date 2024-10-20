@@ -9,12 +9,13 @@ GENERATOR_ADDRESS = "agent1qvnvmnxd8ed5gkgpr690jcq729e57n0tdm523qp3fa7nl8pt8f9kq
 
 class SummaryMessage(Model):
     message: str
+    filename: str
 
 class TrueOrFalseMessage(Model):
     message: str
 
 true_or_false = Agent(
-    name="trueOrFalsAagent",
+    name="trueOrFalseAagent",
     seed="trueorfalse",
     port=8003,
     endpoint="http://127.0.0.1:8003/submit"

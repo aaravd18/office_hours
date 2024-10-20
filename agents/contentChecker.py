@@ -8,6 +8,7 @@ QUIZ_AGENT_ADDRESS = "agent1qwp6lz6hqky6p9ma29tnh497gvdv4tvefr9pf2422snjw9ejffmy
 
 class SummaryMessage(Model):
     message: str
+    filename: str
 
 class CheckerMessage(Model):
     message: str
@@ -25,10 +26,12 @@ client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
-with open('economics.txt', 'r') as file:
-    notes = file.read()
 
-def summary_check_prompt(summarized_notes):
+def read_notes(filename):
+    with open(filename, 'r') as file:
+        return file.read()
+
+def summary_check_prompt(notes, summarized_notes):
     return f"""
     You are an AI assistant responsible for verifying the accuracy and completeness of a summary by comparing it with the original notes. Your job is to ensure that:
 
@@ -54,12 +57,14 @@ async def start(ctx: Context):
 @content_checker.on_message(model=SummaryMessage)
 async def message_handler(ctx: Context, sender: str, msg: SummaryMessage):
     ctx.logger.info(f"Content Checker: Received message from {sender}")
+    content_checker.notes = read_notes(msg.filename)
+    print(content_checker.notes)
 
     chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
-                "content": summary_check_prompt(msg.message),
+                "content": summary_check_prompt(content_checker.notes, msg.message),
             }
         ],
         model="llama3-8b-8192",

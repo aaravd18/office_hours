@@ -5,7 +5,7 @@ from short_answer import short_answer
 from contentChecker import content_checker
 from contentCleaner import content_cleaner
 
-bureau = Bureau()
+bureau = Bureau(port=8001)
 bureau.add(true_or_false)
 bureau.add(quiz_generator)
 bureau.add(short_answer)
