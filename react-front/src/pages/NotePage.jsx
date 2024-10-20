@@ -29,6 +29,29 @@ export default function NotePage() {
 
   const editorRef = useRef(null);
 
+  async function getExamJSON() {
+    var response;
+    //post txt
+    const txtContent = "test content, doesnt mean anything";
+    const blob = new Blob([txtContent], { type: "text/plain" });
+    const file = new File([blob], "sample.txt", { type: "text/plain" });
+    const formData = new FormData();
+    formData.append("file", file);
+    await fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
+    });
+    //get json
+    await fetch("http://localhost:3000/data")
+      .then((res) => {
+        return res.json();
+      })
+      .then((j) => {
+        console.log(j);
+        return j;
+      });
+  }
+
   async function getText() {
     var document = "";
     try {
@@ -144,10 +167,14 @@ export default function NotePage() {
         />
         {examToggle ? (
           <ExamPage
+            name={id}
             toggle={() => {
               setExamToggle(!examToggle);
             }}
             className="z-40 bg-white"
+            getData={() => {
+              getExamJSON();
+            }}
           />
         ) : (
           ""

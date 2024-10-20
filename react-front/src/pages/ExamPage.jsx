@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { useParams } from "react-router-dom";
 
-export default function ExamPage({ className, toggle }) {
-  //   const { id } = useParams();
+export default function ExamPage({ className, toggle, name, getData }) {
+  const [questions, setQuestions] = useState({});
   return (
     <div
       className={
@@ -23,10 +22,21 @@ export default function ExamPage({ className, toggle }) {
         </button>
       </div>
       <div className="mx-auto text-4xl flex flex-row">
-        <h1>Exam made with </h1>
-        <h1 className="ml-2 text-blue-600"> {"id"}</h1>
+        <h1 className="mr-2 text-blue-600"> {name} </h1>
+        <h1>Exam </h1>
       </div>
-      <main></main>
+      <main className="w-full grow flex flex-col">
+        <button
+          className="w-fit m-auto p-2 bg-blue-600 text-white rounded-md"
+          onClick={() => {
+            getData().then((j) => {
+              setQuestions(j);
+            });
+          }}
+        >
+          Regenerate
+        </button>
+      </main>
     </div>
   );
 }
