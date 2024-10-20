@@ -23,7 +23,6 @@ export default function HomePage() {
     while (temp.includes("untitled")) {
       var i = temp.indexOf("untitled");
       temp = temp.substring(0, i) + temp.substring(i + 8);
-      console.log(temp);
       id++;
     }
     try {
@@ -48,8 +47,27 @@ export default function HomePage() {
     } catch (err) {
       console.error(err);
     }
-    console.log(document);
     return document;
+  }
+
+  async function getDate(note) {
+    var date = "";
+    try {
+      var dateRef = await doc(
+        db,
+        authVariables.currentUser.email,
+        "notes",
+        note + "",
+        "date"
+      );
+      var document = (await getDoc(dateRef)).data()
+        ? (await getDoc(dateRef)).data().date
+        : "";
+      console.log(document);
+    } catch (err) {
+      console.error(err);
+    }
+    return date;
   }
 
   useEffect(() => {
@@ -72,8 +90,9 @@ export default function HomePage() {
           }}
         />
         {notes.split(",").map((note) => {
+          var date = getDate(note);
           return (
-            <NoteIcon key={note} className="m-3" image={chem_logo}>
+            <NoteIcon key={note} className="m-3" image={chem_logo} date={date}>
               {note}
             </NoteIcon>
           );

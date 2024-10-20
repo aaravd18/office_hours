@@ -4,7 +4,14 @@ import FuncBar from "../components/FuncBar";
 import Modal from "../components/Modal";
 import { EditNote } from "../components/Menus";
 import { useParams } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+  collection,
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 import { useAuth } from "../contexts/AuthContext";
 import { Editor } from "@tinymce/tinymce-react";
@@ -16,6 +23,7 @@ export default function NotePage() {
   const authVariables = useAuth();
   const { id } = useParams();
   var textRef = doc(db, authVariables.currentUser.email, "notes", id, "text"); //reference to text doc
+  var dateRef = doc(db, authVariables.currentUser.email, "notes", id, "date"); //reference to text doc
 
   const editorRef = useRef(null);
 
@@ -40,6 +48,10 @@ export default function NotePage() {
     }
   }
 
+  async function updateName(name) {
+    
+  }
+
   //retrieves text from firebase on first render
   useEffect(() => {
     getText().then((result) => {
@@ -53,6 +65,12 @@ export default function NotePage() {
     const debounceTimer = setTimeout(() => {
       if (text) {
         updateText(text);
+        //update date on doc
+        try {
+          setDoc(dateRef, { date: Date().substring(0, 15) });
+        } catch (err) {
+          console.error(err);
+        }
       }
     }, 1000);
     return () => {
@@ -68,7 +86,9 @@ export default function NotePage() {
           closeFunction={() => {
             setModalToggle(false);
           }}
-          renameFunction={() => {}}
+          renameFunction={(name) => {
+            updateName(name);
+          }}
           deleteFunction={() => {}}
         />
       </Modal>
