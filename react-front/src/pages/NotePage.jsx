@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import ExamPage from "./ExamPage";
 import Navbar from "../components/Navbar";
 import FuncBar from "../components/FuncBar";
 import Modal from "../components/Modal";
@@ -18,6 +19,7 @@ import { Editor } from "@tinymce/tinymce-react";
 
 export default function NotePage() {
   const [modalToggle, setModalToggle] = useState(false);
+  const [examToggle, setExamToggle] = useState(false);
   const [initialValue, setInitialValue] = useState("");
   const [text, setText] = useState("");
   const authVariables = useAuth();
@@ -48,9 +50,7 @@ export default function NotePage() {
     }
   }
 
-  async function updateName(name) {
-    
-  }
+  async function updateName(name) {}
 
   //retrieves text from firebase on first render
   useEffect(() => {
@@ -93,51 +93,66 @@ export default function NotePage() {
         />
       </Modal>
       <Navbar />
-      <FuncBar
-        editFunction={() => {
-          setModalToggle(true);
-        }}
-      />
-      <Editor
-        apiKey="rncicr4pa0ungw5lzix98tz61buq6rodfdnx37txoh1hi0se"
-        onInit={(_evt, editor) => (editorRef.current = editor)}
-        initialValue={initialValue}
-        init={{
-          height: "89vh",
-          menubar: false,
-          plugins: [
-            "advlist",
-            "autolink",
-            "lists",
-            "link",
-            "image",
-            "charmap",
-            "preview",
-            "anchor",
-            "searchreplace",
-            "visualblocks",
-            "code",
-            "fullscreen",
-            "insertdatetime",
-            "media",
-            "table",
-            "code",
-            "help",
-            "wordcount",
-          ],
-          toolbar:
-            "undo redo | blocks | " +
-            "bold italic forecolor | alignleft aligncenter " +
-            "alignright alignjustify | bullist numlist outdent indent | " +
-            "removeformat | help",
-          content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-          resize: false,
-        }}
-        onEditorChange={() => {
-          setText(editorRef.current.getContent());
-        }}
-      />
+      <div className="w-full relative">
+        <FuncBar
+          editFunction={() => {
+            setModalToggle(true);
+          }}
+          examFunction={() => {
+            setExamToggle(true);
+          }}
+        />
+        <Editor
+          apiKey="rncicr4pa0ungw5lzix98tz61buq6rodfdnx37txoh1hi0se"
+          onInit={(_evt, editor) => (editorRef.current = editor)}
+          initialValue={initialValue}
+          init={{
+            height: "89vh",
+            menubar: false,
+            plugins: [
+              "advlist",
+              "autolink",
+              "lists",
+              "link",
+              "image",
+              "charmap",
+              "preview",
+              "anchor",
+              "searchreplace",
+              "visualblocks",
+              "code",
+              "fullscreen",
+              "insertdatetime",
+              "media",
+              "table",
+              "code",
+              "help",
+              "wordcount",
+            ],
+            toolbar:
+              "undo redo | blocks | " +
+              "bold italic forecolor | alignleft aligncenter " +
+              "alignright alignjustify | bullist numlist outdent indent | " +
+              "removeformat | help",
+            content_style:
+              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            resize: false,
+          }}
+          onEditorChange={() => {
+            setText(editorRef.current.getContent());
+          }}
+        />
+        {examToggle ? (
+          <ExamPage
+            toggle={() => {
+              setExamToggle(!examToggle);
+            }}
+            className="z-40 bg-white"
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 }
