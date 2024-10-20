@@ -64,7 +64,7 @@ function Front({
               className="text-slate-700 font-bold text-3xl w-7 h-7 rounded-full flex items-center justify-center" //bg-red-600
               onClick={deleteFunction}
             >
-              X
+              x
             </button>
             <button
               className="text-slate-700 font-bold text-2xl w-7 h-7 mr-3 rounded-full " //bg-blue-600
