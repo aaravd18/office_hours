@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import reload_icon from "../components/images/reload.png";
 import Flashcard from "../components/Flashcard";
+import TestWindow from "../components/TestWindow";
 import { db } from "../config/firebase";
-import { doc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function ExamPage({ className, toggle, name, rawText }) {
@@ -12,24 +13,50 @@ export default function ExamPage({ className, toggle, name, rawText }) {
   const authValues = useAuth();
 
   useEffect(() => {
+    // if (!tryFirebase()) {
+    //   return;
+    // }
     createExamJSON();
     const fetchData = async () => {
       const data = await getExamJSON();
       setPairs(data);
+      // const docRef = doc(
+      //   db,
+      //   authValues.currentUser.email,
+      //   "notes",
+      //   name,
+      //   "study_data"
+      // );
+      // await setDoc(docRef, data);
     };
     fetchData();
   }, []);
 
-  //checks if study daya is on firebase
-  //creates it and stores it if not
+  //checks if study data is on firebase
+  //returns true if yes, false if not
   async function tryFirebase() {
-    const docRef = doc(
-      db,
-      authValues.currentUser.email,
-      "notes",
-      name,
-      "studyData"
-    );
+    console.log("inside tryFirebase");
+    try {
+      const docRef = doc(
+        db,
+        authValues.currentUser.email,
+        "notes",
+        name,
+        "study_data"
+      );
+      var data = (await getDoc(docRef)).data();
+      console.log(data);
+      if (data === undefined) {
+        console.log(pairs);
+        return false;
+      } else {
+        await setPairs(data.quiz);
+        console.log(pairs);
+        return true;
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   async function getExamJSON() {
@@ -158,15 +185,10 @@ export default function ExamPage({ className, toggle, name, rawText }) {
               "summary"
             ) : choice == 0 ? (
               <>
-                {pairs.questions.map((question) => {
-                  var index = pairs.questions.indexOf(question);
-                  return (
-                    <div className="text-center">
-                      <h1>{question}</h1>
-                      <h1>{pairs.answers[index]}</h1>
-                    </div>
-                  );
-                })}
+                <TestWindow
+                  questions={pairs.questions}
+                  answers={pairs.answers}
+                />
               </>
             ) : choice == 1 ? (
               <>
