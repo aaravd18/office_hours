@@ -32,7 +32,13 @@ export default function HomePage() {
         "note",
         "untitled" + id
       );
-      setDoc(docRef, { all_names: notes + "," + "untitled" + id });
+      var newString = "";
+      if (notes.length > 0) {
+        newString = notes + ",untitled" + id;
+      } else {
+        newString = "untitled" + id;
+      }
+      setDoc(docRef, { all_names: newString });
     } catch (err) {
       console.error(err);
       return;
@@ -89,14 +95,21 @@ export default function HomePage() {
             startNewNote();
           }}
         />
-        {notes.split(",").map((note) => {
-          var date = getDate(note);
-          return (
-            <NoteIcon key={note} className="m-3" image={chem_logo} date={date}>
-              {note}
-            </NoteIcon>
-          );
-        })}
+        {notes.length >= 1
+          ? notes.split(",").map((note) => {
+              var date = getDate(note);
+              return (
+                <NoteIcon
+                  key={note}
+                  className="m-3"
+                  image={chem_logo}
+                  date={date}
+                >
+                  {note}
+                </NoteIcon>
+              );
+            })
+          : ""}
       </div>
     </div>
   );

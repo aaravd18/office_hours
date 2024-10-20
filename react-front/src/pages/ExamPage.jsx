@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import reload_icon from "../components/images/reload.png";
+import Flashcard from "../components/Flashcard";
+import { db } from "../config/firebase";
+import { doc } from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function ExamPage({ className, toggle, name, rawText }) {
   const [pairs, setPairs] = useState({ questions: [""], answers: [""] });
+  const [choice, setChoice] = useState(null);
+  const authValues = useAuth();
 
   useEffect(() => {
     createExamJSON();
@@ -13,6 +19,18 @@ export default function ExamPage({ className, toggle, name, rawText }) {
     };
     fetchData();
   }, []);
+
+  //checks if study daya is on firebase
+  //creates it and stores it if not
+  async function tryFirebase() {
+    const docRef = doc(
+      db,
+      authValues.currentUser.email,
+      "notes",
+      name,
+      "studyData"
+    );
+  }
 
   async function getExamJSON() {
     var response;
@@ -107,20 +125,69 @@ export default function ExamPage({ className, toggle, name, rawText }) {
         {/* <h1>Exam </h1> */}
       </div>
       <main className="w-full grow flex flex-col">
-        {/* <div className="w-full flex flex-row">
-          <button className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg">
-            Quizzes
+        <div className="my-10 w-full flex flex-row">
+          <button
+            onClick={() => {
+              setChoice(-1);
+            }}
+            className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg"
+          >
+            Summary
           </button>
-          <button className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg">
+          <button
+            onClick={() => {
+              setChoice(0);
+            }}
+            className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg"
+          >
+            Practice Test
+          </button>
+          <button
+            onClick={() => {
+              setChoice(1);
+            }}
+            className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg"
+          >
             Flashcards
           </button>
-          <button className="transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-400 duration-300 my-auto p-2 rounded-md bg-blue-500 text-white mx-auto drop-shadow-lg">
-            Flashcards
-          </button>
-        </div> */}
-        {pairs.questions.map((question) => {
-          return <h1>{question}</h1>;
-        })}
+        </div>
+        {/* Disgusting study choice selector */}
+        <div className="mx-auto w-fit">
+          {choice != null ? (
+            choice == -1 ? (
+              "summary"
+            ) : choice == 0 ? (
+              <>
+                {pairs.questions.map((question) => {
+                  var index = pairs.questions.indexOf(question);
+                  return (
+                    <div className="text-center">
+                      <h1>{question}</h1>
+                      <h1>{pairs.answers[index]}</h1>
+                    </div>
+                  );
+                })}
+              </>
+            ) : choice == 1 ? (
+              <>
+                {pairs.questions.map((question) => {
+                  var index = pairs.questions.indexOf(question);
+                  return (
+                    <Flashcard
+                      key={index}
+                      topic={question}
+                      content={pairs.answers[index]}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )
+          ) : (
+            ""
+          )}
+        </div>
       </main>
     </div>
   );
