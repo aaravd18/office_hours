@@ -1,28 +1,18 @@
 {
     "questions": [
-        "According to the Law of Demand, what happens to quantity demanded when price increases?",
-        "The demand curve slopes downward.",
-        "What is the definition of Surplus?",
-        "What is the formula for Price Elasticity of Demand?",
-        "What determines the availability of substitutes?",
-        "What is the result of a change in demand if supply remains constant?",
-        "The law of demand states that as price increases, quantity demanded decreases.",
-        "A change in what would cause a shift in the Demand Curve?",
-        "What does Ceteris Paribus mean in economics?",
-        "What is the difference between Consumer Surplus and Producer Surplus?",
-        "Where is the equilibrium price and quantity found?"
+        "What is the definition of an alkane?",
+        "What is the general formula for an alkane?",
+        "What is one property of alkanes that makes them less reactive?",
+        "What is the density of alkanes compared to water?",
+        "Alkanes are unsaturated hydrocarbons with at least one double bond between carbon atoms.",
+        "What is an example of an alkane that undergoes halogenation?"
     ],
     "answers": [
-        "As price increases, quantity demanded decreases; and as price decreases, quantity demanded increases.",
-        "downward",
-        "It is the excess supply of a product.",
-        "%",
-        "Availability of substitutes and time horizon",
-        "The quantity demanded increases",
+        "Alkanes are saturated hydrocarbons with only single bonds between carbon atoms.",
+        "CnH2n+2",
+        "Alkanes are non-polar molecules.",
+        "Alkanes are generally less dense than water, meaning they will float.",
         "False",
-        "A change in taste or preference, income, or expectations of future prices.",
-        "All else equal.",
-        "The difference between the maximum amount consumers are willing to pay and the amount they actually pay, and the difference between the cost of production and the market price, respectively.",
-        "Where the supply equals demand."
+        "Methane reacts with chlorine to form chloromethane and hydrogen chloride."
     ]
 }

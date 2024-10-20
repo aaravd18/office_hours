@@ -33,23 +33,23 @@ export default function NotePage() {
     var response;
     createTxt();
     //post txt
-    // console.log("post request ran");
-    // const url = "/rest/post";
-    // const data = { filename: "agents/economics.txt" };
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    console.log("post request ran");
+    const url = "/rest/post";
+    const data = { filename: "agents/raw_notes.txt" };
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     //return json
   }
 
