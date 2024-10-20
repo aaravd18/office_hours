@@ -29,9 +29,7 @@ export default function ExamPage({ className, toggle, name, getData }) {
         <button
           className="w-fit m-auto p-2 bg-blue-600 text-white rounded-md"
           onClick={() => {
-            getData().then((j) => {
-              setQuestions(j);
-            });
+            getData();
           }}
         >
           Regenerate

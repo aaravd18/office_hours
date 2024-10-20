@@ -32,24 +32,33 @@ export default function NotePage() {
   async function getExamJSON() {
     var response;
     //post txt
-    const txtContent = "test content, doesnt mean anything";
-    const blob = new Blob([txtContent], { type: "text/plain" });
-    const file = new File([blob], "sample.txt", { type: "text/plain" });
-    const formData = new FormData();
-    formData.append("file", file);
-    await fetch("http://localhost:3000/upload", {
-      method: "POST",
-      body: formData,
+    console.log('post request ran')
+    const url = "/rest/post";
+    const data = { filename: "agents/economics.txt" };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
     //get json
-    await fetch("http://localhost:3000/data")
-      .then((res) => {
-        return res.json();
-      })
-      .then((j) => {
-        console.log(j);
-        return j;
-      });
+    // await fetch("http://localhost:3000/data")
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((j) => {
+    //     console.log(j);
+    //     return j;
+    //   });
   }
 
   async function getText() {
