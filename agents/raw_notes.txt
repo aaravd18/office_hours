@@ -1,1 +1,90 @@
-<p>Hai</p>
+<h3>Organic Chemistry &ndash; Lecture 5: <strong>Alkanes and Their Reactions</strong></h3>
+<h4><strong>I. Introduction to Alkanes</strong></h4>
+<ul>
+<li><strong>Definition</strong>: Alkanes are saturated hydrocarbons, meaning they contain only single bonds between carbon atoms.</li>
+<li><strong>General formula</strong>: Carbon, Hydrogen (CnH2n+2)</li>
+<li><strong>Properties</strong>:
+<ul>
+<li>Non-polar molecules</li>
+<li>Less reactive compared to other organic compounds</li>
+<li>Insoluble in water but soluble in organic solvents</li>
+</ul>
+</li>
+</ul>
+<h4><strong>II. Structure and Nomenclature</strong></h4>
+<ul>
+<li>
+<p><strong>Methane</strong>: The simplest alkane, made up of one carbon and four hydrogen atoms.</p>
+</li>
+<li>
+<p><strong>Ethane</strong>, <strong>Propane</strong>, <strong>Butane</strong>: Larger alkanes with two, three, or four carbon atoms respectively.</p>
+</li>
+<li>
+<p><strong>Isomers</strong>:</p>
+<ul>
+<li>Structural isomers have the same molecular formula but different arrangements of atoms.</li>
+<li>Example: Butane has two isomers:
+<ul>
+<li>Normal butane (straight chain of four carbons)</li>
+<li>Iso-butane (branched chain)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Nomenclature rules</strong> (IUPAC):</p>
+<ol>
+<li>Identify the longest chain of carbon atoms as the parent hydrocarbon.</li>
+<li>Number the carbon atoms starting from the end nearest to a substituent group.</li>
+<li>Name and number any substituent groups attached to the main chain.</li>
+<li>Combine these to form the full name (for example, two-methylpropane).</li>
+</ol>
+</li>
+</ul>
+<h4><strong>III. Physical Properties of Alkanes</strong></h4>
+<ul>
+<li><strong>Boiling points</strong>: Increase as the molecular weight increases, due to stronger van der Waals forces.</li>
+<li><strong>Melting points</strong>: Also increase with molecular weight.</li>
+<li><strong>Density</strong>: Alkanes are generally less dense than water, meaning they will float.</li>
+</ul>
+<h4><strong>IV. Chemical Reactions of Alkanes</strong></h4>
+<ol>
+<li>
+<p><strong>Combustion</strong>:</p>
+<ul>
+<li>Alkanes react with oxygen to produce carbon dioxide and water.</li>
+<li>Complete combustion happens when there is enough oxygen, producing carbon dioxide and water.</li>
+<li>Incomplete combustion occurs with limited oxygen, which can produce carbon monoxide or soot.</li>
+</ul>
+</li>
+<li>
+<p><strong>Halogenation</strong>:</p>
+<ul>
+<li>Alkanes can react with halogens like chlorine or bromine in the presence of ultraviolet light.</li>
+<li>This reaction is called free radical substitution and involves three steps:
+<ol>
+<li><strong>Initiation</strong>: Ultraviolet light breaks a halogen molecule into free radicals.</li>
+<li><strong>Propagation</strong>: The halogen radicals attack alkane molecules, replacing hydrogen atoms.</li>
+<li><strong>Termination</strong>: Two free radicals combine to form a stable molecule.</li>
+</ol>
+</li>
+<li>Example: Methane reacts with chlorine to form chloromethane and hydrogen chloride.</li>
+</ul>
+</li>
+</ol>
+<h4><strong>V. Sources and Uses of Alkanes</strong></h4>
+<ul>
+<li><strong>Natural sources</strong>: Crude oil and natural gas.</li>
+<li><strong>Uses</strong>:
+<ul>
+<li>Fuels, such as propane used in gas grills.</li>
+<li>Lubricants and waxes are also derived from alkanes.</li>
+</ul>
+</li>
+</ul>
+<h4><strong>VI. Summary of Key Concepts</strong></h4>
+<ul>
+<li>Alkanes are simple hydrocarbons with only single carbon-carbon bonds.</li>
+<li>They undergo combustion and halogenation reactions.</li>
+<li>Their physical properties, like boiling and melting points, are influenced by their molecular size and structure.</li>
+</ul>

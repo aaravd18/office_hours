@@ -1,6 +1,7 @@
 #APIs
 /apis
 /react-front/node_modules
+/react-front/src/config/firebase.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
